@@ -21,7 +21,7 @@ body <- dashboardBody(
                width = 12,
                "This app lets readers explore data from the",
            tags$a(href = "https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp", "World Value Study (WVS)"),
-           ". Select a country from the drop-down menu  below and click between the tabs to explore the attitudes related to democracy, news consumption, and attitudes related to science. The averages for the selected country are provided in a table and a graph, and the averages for the entire WVS sample are provided in a graph, as well.",
+           ". Select a country from the drop-down menu below and click between the tabs to explore the attitudes related to democracy, news consumption, and attitudes related to science. The averages for the selected country are provided in a table and a graph, and the averages for the entire WVS sample are provided in a graph, as well.",
            selectInput("country", "Select a country", country)
   )
 ),
