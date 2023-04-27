@@ -6,6 +6,15 @@ output: html_document
 ---
 
 ```{r}
+library(haven)
+library(labelled)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(shiny)
+library(shinydashboard)
+
 ###############
 # Import data #
 ###############
