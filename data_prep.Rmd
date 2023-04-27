@@ -1,0 +1,99 @@
+---
+title: "data_prep"
+author: "Sarah Gonyo"
+date: "2023-04-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(haven)
+library(labelled)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(shiny)
+library(shinydashboard)
+
+############################
+# Set up project structure #
+############################
+
+dir.create("./report")
+dir.create("./output")
+dir.create("./output/fig")
+dir.create("./output/tab")
+dir.create("./documentation")
+dir.create("./data")
+dir.create("./data/raw")
+dir.create("./data/processed")
+dir.create("./scripts")
+
+###############
+# Import data #
+###############
+
+data <- read_dta("./data/raw/WV6_Data_stata_v20201117.dta")
+
+################
+# Prepare data #
+################
+
+#Select questions of interest
+data_subset <- data %>% 
+  select(V2, V228A:V228I, V217:V224, V192:V197) %>%
+  mutate(across(everything(),  ~ case_when(.x >=0 ~ .x))) %>% #replace negative with missing 
+  drop_unused_value_labels()
+
+#Reverse code variables
+data_subset[2:10] <- 5 - data_subset[2:10]
+data_subset[11:18] <- 6 - data_subset[11:18]
+
+#Replace label values for science so they match
+val_label(data_subset$V197, 1) <- "Completely disagree"
+val_label(data_subset$V197, 10) <- "Completely agree"
+
+data_subset <- as.data.frame(data_subset)
+
+#Create list of countries for dashboard input
+country <- names(val_labels(data$V2)) 
+
+country <- country[-1]
+
+data_subset$V2 <- as_factor(data_subset$V2)
+
+#Rename variables for data visualization
+colnames(data_subset) <- c(
+  "V2",
+  "dem_a",
+  "dem_b",
+  "dem_c",
+  "dem_d",
+  "dem_e",
+  "dem_f",
+  "dem_g",
+  "dem_h",
+  "dem_i",
+  "news_a",
+  "news_b",
+  "news_c",
+  "news_d",
+  "news_e",
+  "news_f",
+  "news_g",
+  "news_h",
+  "sci_a",
+  "sci_b",
+  "sci_c",
+  "sci_d",
+  "sci_e",
+  "sci_f"
+)
+
+#############
+# Save data #
+#############
+
+write_rds(data_subset, file = "./data/processed/data_subset.rds")
+```
+

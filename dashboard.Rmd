@@ -1,0 +1,253 @@
+---
+title: "dashboard"
+author: "Sarah Gonyo"
+date: "2023-04-27"
+output: html_document
+---
+
+```{r}
+###############
+# Import data #
+###############
+data_subset <- read_rds(file = "./data/processed/data_subset.rds")
+
+####################
+# Create Shiny App #
+####################
+
+#Body
+body <- dashboardBody(
+  fluidRow(box(title = "Overview",
+               width = 12,
+               "This app lets readers explore data from the",
+           tags$a(href = "https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp", "World Value Study (WVS)"),
+           ". Select a country from the drop-down menu  below and click between the tabs to explore the attitudes related to democracy, news consumption, and attitudes related to science. The averages for the selected country are provided in a table and a graph, and the averages for the entire WVS sample are provided in a graph, as well.",
+           selectInput("country", "Select a country", country)
+  )
+),
+  fluidRow(
+    tabBox(title = "Results",
+           width = 12,
+           tabPanel("Democracy", 
+                    verbatimTextOutput("dem_text"),
+                    dataTableOutput("table_dem"),
+                    plotOutput("plot_dem"),
+                    plotOutput("plot_dem_all")
+           ),
+           
+           
+           tabPanel("News", 
+                    verbatimTextOutput("news_text"),
+                    dataTableOutput("table_news"),
+                    plotOutput("plot_news"),
+                    plotOutput("plot_news_all")
+           ),
+           
+           
+           tabPanel("Science", 
+                    verbatimTextOutput("sci_text"),
+                    dataTableOutput("table_sci"),
+                    plotOutput("plot_sci"),
+                    plotOutput("plot_sci_all")
+           )
+    )
+  )
+)
+
+#UI
+ui <- dashboardPage(
+  dashboardHeader(title = "World Value Study"),
+  dashboardSidebar(disable = TRUE),
+  body
+)
+
+#Server
+server <- function(input, output, session){
+  
+  #Link to data
+  url <-a("World Values Study", href = "https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp")
+  output$link <- renderUI({
+    tagList(url)
+  })
+  
+  #Subset data based on input country and calculate means
+  data <- reactive(
+    data_subset %>%
+      subset(V2 == input$country) %>%
+      select(-V2)%>%
+      summarise(across(everything(), \(x) mean(x, na.rm = TRUE))) %>%
+      mutate_if(is.numeric, round, 1)
+  )
+  
+  #Calculate means for all countries
+  data_all <- reactive(
+    data_subset %>%
+      select(-V2)%>%
+      summarise(across(everything(), \(x) mean(x, na.rm = TRUE))) %>%
+      mutate_if(is.numeric, round, 1)
+  )
+
+  #############
+  # Democracy #
+  #############
+  
+  #Header text
+  output$dem_text <- renderText(
+      paste("How often in country's elections:",
+      "[Scale: 1: Not at all often -> 4: Very often]",
+            "dem_a: Votes are counted fairly", 
+            "dem_b: Opposition candidates are prevented from running",
+            "dem_c: TV news favors the governing party",
+            "dem_d: Voters are bribed; dem_e: Journalists provide fair coverage of elections",
+            "dem_f: Election officials are fair",
+            "dem_g: Rich people buy elections",
+            "dem_h: Voters are threatened with violence at the polls",
+            "dem_i: Voters are offered a genuine choice in the elections", sep = "\n")
+  )
+  
+  #Select democracy variables
+  dem_data <- reactive(
+    data() %>%
+      select(1:9)
+  )
+  
+  #Create table of country averages
+  output$table_dem <- renderDataTable(
+    dem_data()
+  )
+  
+  #Create plot of country averages
+  output$plot_dem <- renderPlot(
+    dem_data() %>%
+      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
+      ggplot(aes(y = response, x = question)) +
+      stat_summary(geom = "point", fun.y = "mean") + 
+      labs(x = "Question", y = "Response (on a 1 to 4 scale)") + 
+      ggtitle(paste0(input$country, " Results")) 
+  )
+  
+  #Create plot of overall averages
+  output$plot_dem_all <- renderPlot(
+    data_all() %>%
+      select(1:9) %>%
+      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
+      ggplot(aes(y = response, x = question)) +
+      stat_summary(geom = "point", fun.y = "mean") + 
+      labs(x = "Question", y = "Response (on a 1 to 4 scale)") + 
+      ggtitle("World Results")
+  )
+  
+  ########
+  # News #
+  ########
+  
+  #Header text
+  output$news_text <- renderText(
+      paste("Information source:",
+      "[Scale: 1: Never, 2: Less than monthly, 3: Monthly, 4: Weekly, 5: Daily]",
+            "news_a: Daily newspaper", 
+            "news_b: Printed magazines",
+            "news_c: TV news",
+            "news_d: Radio news",
+            "news_e: Mobile phone",
+            "news_f: Email",
+            "news_g: Internet",
+            "news_h: Talk with friends or colleagues", sep = "\n")
+  )
+  
+  #Select news variables
+  news_data <- reactive(
+    data() %>%
+      select(10:17)
+  )
+  
+  #Create table of country averages
+  output$table_news <- renderDataTable(
+    news_data()
+  )
+  
+  #Create plot of country averages
+  output$plot_news <- renderPlot(
+    news_data() %>%
+      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
+      ggplot(aes(y = response, x = question)) +
+      stat_summary(geom = "point", fun.y = "mean") + 
+      labs(x = "Information Source", y = "Response (on a 1 to 5 scale)") + 
+      ggtitle(paste0(input$country, " Results")) 
+  )
+  
+  #Create plot of overall averages
+  output$plot_news_all <- renderPlot(
+    data_all() %>%
+      select(10:17) %>%
+      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
+      ggplot(aes(y = response, x = question)) +
+      stat_summary(geom = "point", fun.y = "mean") + 
+      labs(x = "Information Source", y = "Response (on a 1 to 5 scale)") + 
+      ggtitle("World Results")
+  )
+  
+  ###########
+  # Science #
+  ###########
+  
+  #Header text
+  output$sci_text <- renderText(
+    {
+      paste("sci_a: Science and technology are making our lives healthier, easier, and more comfortable",
+            "[Scale: 1: Completely disagree -> 10: Completely agree]",
+            "",
+            "sci_b: Because of science and technology, there will be more opportunities for the next generation",
+                        "[Scale: 1: Completely disagree -> 10: Completely agree]",
+                        "",
+            "sci_c: We depend too much on science and not enough on faith",
+                        "[Scale: 1: Completely disagree -> 10: Completely agree]",
+                        "",
+            "sci_d: One of the bad effects of science is that it breaks down people’s ideas of right and wrong",
+                        "[Scale: 1: Completely disagree -> 10: Completely agree]",
+                        "",
+            "sci_e: It is not important for me to know about science in my daily life",
+                        "[Scale: 1: Completely disagree -> 10: Completely agree]",
+                        "",
+            "sci_f: The world is better off, or worse off, because of science and technology",
+                        "[Scale: 1: A lot worse off -> 10: A lot better off]",
+            sep = "\n")
+    }
+  )
+  
+  #Select science variables
+  science_data <- reactive(
+    data() %>%
+      select(18:23)
+  )
+  
+  #Create table of country averages
+  output$table_sci <- renderDataTable(
+    science_data() 
+  )
+  
+  #Create plot of country averages
+  output$plot_sci <- renderPlot(
+    science_data() %>%
+      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
+      ggplot(aes(y = response, x = question)) +
+      stat_summary(geom = "point", fun.y = "mean") + 
+      labs(x = "Question", y = "Response (on a 1 to 10 scale)") + 
+      ggtitle(paste0(input$country, " Results")) 
+  )
+  
+  #Create plot of overall averages
+  output$plot_sci_all <- renderPlot(
+    data_all() %>%
+      select(18:23) %>%
+      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
+      ggplot(aes(y = response, x = question)) +
+      stat_summary(geom = "point", fun.y = "mean") + 
+      labs(x = "Question", y = "Response (on a 1 to 10 scale)") + 
+      ggtitle("World Results") 
+  )
+}
+
+shinyApp(ui, server)
+
+```
