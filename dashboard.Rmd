@@ -19,6 +19,7 @@ library(shinydashboard)
 # Import data #
 ###############
 data_subset <- read_rds(file = "./data/processed/data_subset.rds")
+country <- read_rds(file = "./data/processed/country.rds")
 
 ####################
 # Create Shiny App #
@@ -73,19 +74,13 @@ ui <- dashboardPage(
 #Server
 server <- function(input, output, session){
   
-  #Link to data
-  url <-a("World Values Study", href = "https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp")
-  output$link <- renderUI({
-    tagList(url)
-  })
-  
   #Subset data based on input country and calculate means
   data <- reactive(
     data_subset %>%
       subset(V2 == input$country) %>%
       select(-V2)%>%
       summarise(across(everything(), \(x) mean(x, na.rm = TRUE))) %>%
-      mutate_if(is.numeric, round, 1)
+      mutate(across(where(is.numeric), round, 1))
   )
   
   #Calculate means for all countries
@@ -93,7 +88,7 @@ server <- function(input, output, session){
     data_subset %>%
       select(-V2)%>%
       summarise(across(everything(), \(x) mean(x, na.rm = TRUE))) %>%
-      mutate_if(is.numeric, round, 1)
+      mutate(across(where(is.numeric), round, 1))
   )
 
   #############
@@ -122,27 +117,25 @@ server <- function(input, output, session){
   
   #Create table of country averages
   output$table_dem <- renderDataTable(
-    dem_data()
+     dem_data()
   )
   
   #Create plot of country averages
   output$plot_dem <- renderPlot(
     dem_data() %>%
-      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
-      ggplot(aes(y = response, x = question)) +
-      stat_summary(geom = "point", fun.y = "mean") + 
-      labs(x = "Question", y = "Response (on a 1 to 4 scale)") + 
-      ggtitle(paste0(input$country, " Results")) 
+      pivot_longer(everything(), names_to = "question", values_to = "value") %>%
+      ggplot(aes(x = question, y = value)) + geom_col() +
+      labs(x = "Question", y = "Response (on a 1 to 4 scale)") +
+      ggtitle(paste0(input$country, " Results"))
   )
   
-  #Create plot of overall averages
+  # #Create plot of overall averages
   output$plot_dem_all <- renderPlot(
     data_all() %>%
       select(1:9) %>%
-      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
-      ggplot(aes(y = response, x = question)) +
-      stat_summary(geom = "point", fun.y = "mean") + 
-      labs(x = "Question", y = "Response (on a 1 to 4 scale)") + 
+      pivot_longer(everything(), names_to = "question", values_to = "value") %>%
+      ggplot(aes(x = question, y = value)) + geom_col() +
+      labs(x = "Question", y = "Response (on a 1 to 4 scale)") +
       ggtitle("World Results")
   )
   
@@ -178,9 +171,8 @@ server <- function(input, output, session){
   #Create plot of country averages
   output$plot_news <- renderPlot(
     news_data() %>%
-      pivot_longer(everything(), names_to = "question", values_to = "response") %>%
-      ggplot(aes(y = response, x = question)) +
-      stat_summary(geom = "point", fun.y = "mean") + 
+      pivot_longer(everything(), names_to = "question", values_to = "value") %>%
+      ggplot(aes(x = question, y = value)) + geom_col() +
       labs(x = "Information Source", y = "Response (on a 1 to 5 scale)") + 
       ggtitle(paste0(input$country, " Results")) 
   )
@@ -190,8 +182,7 @@ server <- function(input, output, session){
     data_all() %>%
       select(10:17) %>%
       pivot_longer(everything(), names_to = "question", values_to = "response") %>%
-      ggplot(aes(y = response, x = question)) +
-      stat_summary(geom = "point", fun.y = "mean") + 
+      ggplot(aes(x = question, y = value)) + geom_col() +
       labs(x = "Information Source", y = "Response (on a 1 to 5 scale)") + 
       ggtitle("World Results")
   )
@@ -239,8 +230,7 @@ server <- function(input, output, session){
   output$plot_sci <- renderPlot(
     science_data() %>%
       pivot_longer(everything(), names_to = "question", values_to = "response") %>%
-      ggplot(aes(y = response, x = question)) +
-      stat_summary(geom = "point", fun.y = "mean") + 
+      ggplot(aes(x = question, y = value)) + geom_col() +
       labs(x = "Question", y = "Response (on a 1 to 10 scale)") + 
       ggtitle(paste0(input$country, " Results")) 
   )
@@ -250,8 +240,7 @@ server <- function(input, output, session){
     data_all() %>%
       select(18:23) %>%
       pivot_longer(everything(), names_to = "question", values_to = "response") %>%
-      ggplot(aes(y = response, x = question)) +
-      stat_summary(geom = "point", fun.y = "mean") + 
+      ggplot(aes(x = question, y = value)) + geom_col() +
       labs(x = "Question", y = "Response (on a 1 to 10 scale)") + 
       ggtitle("World Results") 
   )
