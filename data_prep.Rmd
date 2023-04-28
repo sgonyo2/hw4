@@ -55,11 +55,6 @@ val_label(data_subset$V197, 10) <- "Completely agree"
 
 data_subset <- as.data.frame(data_subset)
 
-#Create list of countries for dashboard input
-country <- names(val_labels(data$V2)) 
-
-country <- country[-1]
-
 data_subset$V2 <- as_factor(data_subset$V2)
 
 #Rename variables for data visualization
@@ -90,10 +85,32 @@ colnames(data_subset) <- c(
   "sci_f"
 )
 
+#######################
+# Create country list #
+#######################
+
+#Remove countries that don't have data for all three sections
+missing <- data_subset %>%
+  group_by(V2) %>%
+  summarise_each(funs(sum(is.na(.))/length(.)))
+
+missing$max <- apply(missing[2:24], 1, max, na.rm = TRUE)
+
+#Country list
+country <- missing$V2[missing$max<1]
+
+##################################
+# Subset data based on countries #
+##################################
+
+country <- as.data.frame(country)
+
+data_subset <- inner_join(data_subset, country, by = c("V2" = "country"), relationship = "many-to-one")
+
 #############
 # Save data #
 #############
 
 write_rds(data_subset, file = "./data/processed/data_subset.rds")
+write_rds(country, file = "./data/processed/country.rds")
 ```
-
