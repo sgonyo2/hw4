@@ -1,12 +1,13 @@
 **Description**  
-The purpose of this project is to create a [shiny app](https://sgonyo.shinyapps.io/dashboard/?_ga=2.179947940.1663124088.1682603557-1101961854.1682603557).
+The purpose of this project is to create a [shiny app](https://sgonyo.shinyapps.io/homework4/?_ga=2.191068074.1895070457.1683133255-1101961854.1682603557).
  to explore data from the [World Value Study (WVS)](https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp).
 The reader is able to select a country from a drop-down menu and click between the tabs to explore the attitudes related to democracy, news consumption, and attitudes related to science.
 The averages for the selected country are provided in a table and a graph, and the averages for the entire WVS sample are provided in a graph, as well.
 
 **Organization**  
 [data_prep](https://github.com/sgonyo2/hw4/blob/main/data_prep.Rmd) imports and prepares the data.  
-[dashboard](https://github.com/sgonyo2/hw4/blob/main/dashboard.Rmd) creates the [shiny app](https://sgonyo.shinyapps.io/dashboard/?_ga=2.179947940.1663124088.1682603557-1101961854.1682603557)
+[app.R](https://github.com/sgonyo2/hw4/blob/main/app.R) creates the [shiny app](https://sgonyo.shinyapps.io/homework4/?_ga=2.191068074.1895070457.1683133255-1101961854.1682603557)  
+[processed](https://github.com/sgonyo2/hw4/tree/main/processed) contains the processed data ([data_subset](https://github.com/sgonyo2/hw4/blob/main/processed/data_subset.rds)) and codebook ([codebook](https://github.com/sgonyo2/hw4/blob/main/processed/codebook.csv)) used for creating figures
 
 
 **Session Info**  
