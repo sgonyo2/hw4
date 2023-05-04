@@ -1,17 +1,6 @@
----
-title: "data_prep"
-author: "Sarah Gonyo"
-date: "2023-04-23"
-output: html_document
----
-
 ```{r setup, include=FALSE}
+library(tidyverse)
 library(haven)
-library(labelled)
-library(readr)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
 library(shiny)
 library(shinydashboard)
 
@@ -35,82 +24,49 @@ dir.create("./scripts")
 
 data <- read_dta("./data/raw/WV6_Data_stata_v20201117.dta")
 
+###################
+# Create codebook #
+###################
+
+data_labels <- map(data, function(x) attributes(x)$label)
+
+codebook <- tibble(var = names(data_labels),
+                   label = unlist(data_labels)) %>%
+  mutate(
+    label = str_remove(label, "How often in country's elections: "),
+    label = str_remove(label, "Information source: ")
+  )
+
 ################
 # Prepare data #
 ################
 
-#Select questions of interest
-data_subset <- data %>% 
-  select(V2, V228A:V228I, V217:V224, V192:V197) %>%
-  mutate(across(everything(),  ~ case_when(.x >=0 ~ .x))) %>% #replace negative with missing 
-  drop_unused_value_labels()
+#create lookup table of country names
+labs2 <- attributes(data$V2)$labels
+lookup_tab <- names(labs2)
+names(lookup_tab) <- as.character(labs2)
 
-#Reverse code variables
-data_subset[2:10] <- 5 - data_subset[2:10]
-data_subset[11:18] <- 6 - data_subset[11:18]
-
-#Replace label values for science so they match
-val_label(data_subset$V197, 1) <- "Completely disagree"
-val_label(data_subset$V197, 10) <- "Completely agree"
-
-data_subset <- as.data.frame(data_subset)
-
-data_subset$V2 <- as_factor(data_subset$V2)
-
-#Rename variables for data visualization
-colnames(data_subset) <- c(
-  "V2",
-  "dem_a",
-  "dem_b",
-  "dem_c",
-  "dem_d",
-  "dem_e",
-  "dem_f",
-  "dem_g",
-  "dem_h",
-  "dem_i",
-  "news_a",
-  "news_b",
-  "news_c",
-  "news_d",
-  "news_e",
-  "news_f",
-  "news_g",
-  "news_h",
-  "sci_a",
-  "sci_b",
-  "sci_c",
-  "sci_d",
-  "sci_e",
-  "sci_f"
-)
-
-#######################
-# Create country list #
-#######################
-
-#Remove countries that don't have data for all three sections
-missing <- data_subset %>%
-  group_by(V2) %>%
-  summarise_each(funs(sum(is.na(.))/length(.)))
-
-missing$max <- apply(missing[2:24], 1, max, na.rm = TRUE)
-
-#Country list
-country <- missing$V2[missing$max<1]
-
-##################################
-# Subset data based on countries #
-##################################
-
-country <- as.data.frame(country)
-
-data_subset <- inner_join(data_subset, country, by = c("V2" = "country"), relationship = "many-to-one")
-
+data_subset <- data %>%
+  #add country variable
+  mutate(country = lookup_tab[as.character(data$V2)]) %>%
+  #select variables of interest
+  select(country, V228A:V228I, V217:V224, V192:V197) %>%
+  #replace negative with missing
+  mutate(across(everything(),  ~ case_when(.x >= 0 ~ .x))) %>% 
+  #factor news consumption
+  mutate_at(vars(V217:V224),
+            factor,
+              labels = c("Daily", "Weekly", "Monthly",
+                         "Less than monthly", "Never")
+            ) %>%
+  #reverse code variables
+  mutate_at(vars(V228A:V228I),
+            ~ 5 - .)
+            
 #############
 # Save data #
 #############
 
 write_rds(data_subset, file = "./data/processed/data_subset.rds")
-write_rds(country, file = "./data/processed/country.rds")
+write_csv(codebook, "./data/processed/codebook.csv")
 ```
