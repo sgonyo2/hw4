@@ -1,0 +1,443 @@
+var,label
+V1,Wave
+V2,Country/region
+V2A,Country/regions [with split ups]
+cow,COW Country Code
+C_COW_ALPHA,Country code CoW alpha
+B_COUNTRY_ALPHA,Country code ISO 3166 alpha
+V3,Original respondent number
+V4,Important in life: Family
+V5,Important in life: Friends
+V6,Important in life: Leisure time
+V7,Important in life: Politics
+V8,Important in life: Work
+V9,Important in life: Religion
+V10,Feeling of happiness
+V11,State of health (subjective)
+V12,Important child qualities: independence
+V13,Important child qualities: Hard work
+V14,Important child qualities: feeling of responsibility
+V15,Important child qualities: imagination
+V16,Important child qualities: tolerance and respect for other people
+V17,Important child qualities: thrift saving money and things
+V18,Important child qualities: determination perseverance
+V19,Important child qualities: religious faith
+V20,Important child qualities: unselfishness
+V21,Important child qualities: obedience
+V22,Important child qualities: Self-expression
+V23,Satisfaction with your life
+V24,Most people can be trusted
+V25,Active/Inactive membership of church or religious organization
+V26,Active/Inactive membership of sport or recreation
+V27,"Active/Inactive membership of art, music, educational"
+V28,Active/Inactive membership of labour unions
+V29,Active/Inactive membership of political party
+V30,Active/Inactive membership of environmental organization
+V31,Active/Inactive membership of professional organization
+V32,Active/Inactive membership of charitable/humanitarian organization
+V33,Active/Inactive membership: Consumer organization
+V34,"Active/Inactive membership: Self-help group, mutual aid group"
+V35,Active/Inactive membership of any other organization
+V36,Neighbours: Drug addicts
+V37,Neighbours: People of a different race
+V38,Neighbours: People who have AIDS
+V39,Neighbours: Immigrants/foreign workers
+V40,Neighbours: Homosexuals
+V41,Neighbours: People of a different religion
+V42,Neighbours: Heavy drinkers
+V43,Neighbours: Unmarried couples living together
+V44,Neighbours: People who speak a different language
+V44_ES,Neighbours: Gypsies
+V45,Jobs scarce: Men should have more right to a job than women
+V46,Jobs scarce: Employers should give priority to (nation) people than immigrants
+V47,Problem if women have more income than husband (B)
+V48,Job best way for women to be independent (b)
+V49,One of main goals in life has been to make my parents proud
+V50,Pre-school child suffers with working mother
+V51,Men make better political leaders than women do
+V52,University is more important for a boy than for a girl
+V53,Men make better business executives than women do
+V54,Being a housewife just as fulfilling
+V55,How much freedom of choice and control
+V56,Do you think most people try to take advantage of you (10 point scale)
+V56_NZ,Do you think most people would try to take advantage of you if they got a chance
+V57,Marital status
+V58,How many children do you have
+V59,Satisfaction with financial situation of household
+V60,Aims of country: first choice
+V61,Aims of country: second choice
+V62,Aims of respondent: first choice
+V63,Aims of respondent: second choice
+V64,Most important: first choice
+V65,Most important: second choice
+V66,Willingness to fight for country
+V67,Future changes: Less importance placed on work
+V68,Future changes: More emphasis on technology
+V69,Future changes: Greater respect for authority
+V70,Schwartz: It is important to this person to think up new ideas and be creative
+V71,Schwartz: It is important to this person to be rich
+V72,Schwartz: It is important to this person living in secure surroundings
+V73,Schwartz: It is important to this person to have a good time
+V74,Schwartz: It is important to this person to do something for the good of society
+V74B,Schwartz: It is important to this person to help the people nearby
+V75,Schwartz: It is important to this person being very successful
+V76,Schwartz: It is important to this person adventure and taking risks
+V77,Schwartz: It is important to this person to always behave properly
+V78,Schwartz: It is important to this person looking after the environment
+V79,Schwartz: It is important to this person tradition
+V80,Most serious problem of the world
+V81,Protecting environment vs. Economic growth
+V82,Past two years: given money to ecological organization
+V83,Past two years: participated in demonstration for environment
+V84,Interest in politics
+V85,Political action: Signing a petition
+V86,Political action: joining in boycotts
+V87,Political action: attending lawful/peaceful demonstrations
+V88,Political action: joining unofficial strikes
+V89,Political action: Other
+V90,Political action recently done: signing a petition
+V91,Political action recently done: joining in boycotts
+V92,Political action recently done: Attending peaceful demonstrations
+V93,Political acition recently done: Joining strikes
+V94,Political action recently done: Other
+V95,Self positioning in political scale
+V96,Income equality
+V97,Private vs state ownership of business
+V98,Government responsibility
+V99,Competition good or harmful
+V100,Hard work brings success
+V101,Wealth accumulation
+V102,How much you trust: Your family (B)
+V103,Trust: Your neighborhood (B)
+V104,Trust: People you know personally (B)
+V105,Trust: People you meet for the first time (B)
+V106,Trust: People of another religion (B)
+V107,Trust: People of another nationality (B)
+V108,Confidence: Churches
+V109,Confidence: Armed Forces
+V110,Confidence: The Press
+V111,Confidence: Television
+V112,Confidence: Labour Unions
+V113,Confidence: The Police
+V114,Confidence: Justice System/Courts
+V115,Confidence: The Government
+V116,Confidence: The Political Parties
+V117,Confidence: Parliament
+V118,Confidence: The Civil Services
+V119,Confidence: Universities
+V120,Confidence: Major Companies
+V121,Confidence: Banks
+V122,Confidence: The Environmental Protection Movement
+V123,Confidence: The WomenÂ´s Movement
+V124,Confidence: Charitable or humanitarian organizations
+V125_00,Confidence: The European Union
+V125_01,Confidence: The APEC
+V125_02,Confidence: CARICOM
+V125_03,Confidence: The Arab Maghreb Union
+V125_04,Confidence: The Organization of the Islamic World
+V125_05,Confidence: The NAFTA
+V125_06,Confidence: The Mercosur
+V125_07,Confidence: CIS
+V125_08,Confidence: The Organization for African Unity-OAU
+V125_09,Confidence: The Association of South East Asian Nations -ASEAN
+V125_10,Confidence: Confidence in CER with Australia
+V125_11,Confidence: The Organization of American States (OAE)
+V125_12,Confidence: The SAARC
+V125_13,Confidence: UNASUR
+V125_14,Confidence: The Free Commerce Treaty (Tratado de libre comercio)
+V125_15,Confidence: The Arab League
+V125_16,Confidence: Cooperation Council for the Arab states of Gulf (GCC)
+V125_17,Confidence: Mainland government
+V126,Confidence: The United Nations
+V127,Political system: Having a strong leader
+V128,Political system: Having experts make decisions
+V129,Political system: Having the army rule
+V130,Political system: Having a democratic political system
+V131,Democracy: Governments tax the rich and subsidize the poor.
+V132,Democracy: Religious authorities interpret the laws.
+V133,Democracy: People choose their leaders in free elections.
+V134,Democracy: People receive state aid for unemployment.
+V135,Democracy: The army takes over when government is incompetent.
+V136,Democracy: Civil rights protect peopleâ€™s liberty against oppression.
+V137,Democracy: The state makes people's incomes equal
+V138,Democracy: People obey their rulers
+V139,Democracy: Women have the same rights as men.
+V140,Importance of democracy
+V141,How democratically is this country being governed today
+V142,Respect for individual human rights nowadays
+V143,Thinking about meaning and purpose of life
+V144,Religious denomination - detailed list
+V144G,Religious denominations - major groups
+V145,How often do you attend religious services
+V146,How often to you pray
+V147,Religious person
+V148,Believe in: God
+V149,Believe in: hell
+V150,Meaning of religion: To follow religious norms and ceremonies vs To do good to o
+V151,Meaning of religion: To make sense of life after death vs To make sense of life
+V152,How important is God in your life
+V153,"Whenever science and religion conflict,  religion is always right"
+V154,The only acceptable religion  is my religion
+V155,All religions should be taught in public schools
+V156,People who belong to different religions are probably just as moral as those who
+V157,Social position: People in their 20s
+V158,Social position: People in their 40s
+V159,Social position: People in their 70s
+V160,Is a 30-year old boss acceptable
+V161,People over 70: are seen as friendly
+V162,People over 70: are seen as competent
+V163,People over 70: viewed with respect
+V164,Is a 70-year old boss acceptable
+V165,Older people are not respected much these days
+V166,Older people get more than their fair share from the government
+V167,Older people are a burden on society
+V168,Companies that employ young people perform better than those that employ people
+V169,Old people have too much political influence
+V160A,I see myself as someone who: is reserved
+V160B,I see myself as someone who: is generally trusting
+V160C,I see myself as someone who: tends to be lazy
+V160D,"I see myself as someone who: is relaxed, handles stress well"
+V160E,I see myself as someone who: has few artistic interests
+V160F,"I see myself as someone who: is outgoing, sociable"
+V160G,I see myself as someone who: tends to find fault with others
+V160H,I see myself as someone who: does a thorough job
+V160I,I see myself as someone who: gets nervous easily
+V160J,I see myself as someone who: has an active imagination
+V170,Secure in neighborhood
+V171,Frequency in your neighborhood: Robberies
+V172,Frequency in your neighborhood: Alcohol consumed in the streets
+V173,Frequency in your neighborhood: Police or military interfere with peopleâ€™s pri
+V174,Frequency in your neighborhood: Racist behavior
+V175,Frequency in your neighborhood: Drug sale in streets
+V176,Things done for reasons of security: Didnâ€™t carry much money
+V177,Things done for reasons of security: Preferred not to go out at night
+V178,"Things done for reasons of security: Carried a knife, gun or other weapon"
+V179,Respondent was victim of a crime during the past year
+V180,Respondent's family was victim of a crime during last year
+V181,Worries: Losing my job or not finding a job
+V182,Worries: Not being able to give one's children a good education
+V183,Worries: A war involving my country
+V184,Worries: A terrorist attack
+V185,Worries: A civil war
+V186,Worries: Government wire-tapping or reading my mail or email
+V187,"Under some conditions, war is necessary to obtain justice"
+V188,Frequency you/family (last 12 month): Gone without enough food to eat
+V189,Frequency you/family (last 12 month): Felt unsafe from crime in your own home
+V190,Frequency you/family (last 12 month): Gone without needed medicine or treatment
+V191,Frequency you/family (last 12 month): Gone without a cash income
+V192,"Science and technology are making our lives healthier, easier, and more comforta"
+V193,"Because of science and technology, there will be more opportunities for the next"
+V194,We depend too much on science and not enough on faith
+V195,One of the bad effects of science is that it breaks down peopleâ€™s ideas of rig
+V196,It is not important for me to know about science in my daily life
+V197,"The world is better off, or worse off, because of science and technology"
+V198,Justifiable: Claiming government benefits to which you are not entitled
+V199,Justifiable: Avoiding a fare on public transport
+V200,Justifiable: Stealing property
+V201,Justifiable: Cheating on taxes
+V202,Justifiable: Someone accepting a bribe
+V203,Justifiable: Homosexuality
+V203A,Justifiable: Prostitution
+V204,Justifiable: Abortion
+V205,Justifiable: Divorce
+V206,Justifiable: Sex before marriage
+V207,Justifiable: Suicide
+V207A,Justifiable: Euthanasia
+V208,Justifiable: For a man to beat his wife
+V209,Justifiable: Parents beating children
+V210,Justifiable: Violence against other people
+V211,How proud of nationality
+V212,I see myself as a world citizen
+V213,I see myself as member of my local community
+V214,I see myself as citizen of the [country] nation
+V215_01,I see myself as citizen of the [European Union]
+V215_02,I see myself as citizen of [APEC]
+V215_03,I see myself as citizen of the [Northeast Asia Region]
+V215_04,I see myself as citizen of [The Caribbean]
+V215_05,I see myself as citizen of [Arab Maghreb Union]
+V215_06,I see myself as citizen of [Arab Union]
+V215_07,I see myself as citizen of [North America]
+V215_08,I see myself as citizen of [Latinamerica]
+V215_10,I see myself as citizen of [Mercosur]
+V215_11,I see myself as citizen of [CIS]
+V215_12,I see myself as citizen of [The African Union]
+V215_13,I see myself as citizen of [ASEAN]
+V215_14,I see myself as citizen of [ASIA]
+V215_15,I see myself as citizen of the [UNASUR]
+V215_16,I see myself as citizen of the [Islamic nation]
+V215_17,I see myself as part of the Cooperation Council for the Arab states of Gulf (GCC
+V215_18,I see myself as part of  [SAARC]
+V216,I see myself as an autonomous individual
+V217,Daily newspaper (B)
+V218,Printed magazines (B)
+V219,TV news (B)
+V220,Radio news (B)
+V221,Mobile phone (B)
+V222,Email (B)
+V223,Internet (B)
+V224,Talk with friends or colleagues (B)
+V218_ESMA,Printed magazines
+V217_ESMA,Daily newspaper
+V219_ESMA,TV news
+V220_ESMA,Radio news
+V221_ESMA,Mobile phone
+V222_ESMA,Email
+V223_ESMA,Internet
+V224_ESMA,Talk with friends or colleagues
+V225,How often use of PC
+V226,Vote in elections: local level
+V227,Vote in elections: National level
+V228,Which party would you vote for if there were a national election tomorrow
+V228_LOCAL,Which party would you vote for if there were a national election tomorrow
+V228_2,Which party would you vote for if there were a national election tomorrow (2nd c
+V228A,Votes are counted fairly
+V228B,Opposition candidates are prevented from runni
+V228C,TV news favors the governing party
+V228D,Voters are bribed
+V228E,Journalists provide fair coverage of elections
+V228F,Election officials are fair
+V228G,Rich people buy elections
+V228H,Voters are threatened with  violence at the po
+V228I,Voters are offered a genuine choice in the ele
+V228J,Some people think that having honest elections makes a lot of difference in thei
+V228K,Importance of having honest elections in whether or not this country develops ec
+V229,Employment status
+V230,Sector of employment
+V231,Nature of tasks: manual vs. Cognitive
+V232,Nature of tasks: routine vs. Creative
+V233,Nature of tasks: independence
+V234,Are you supervising someone
+V235,Are you the chief wage earner in your house
+V236,Is the chief wage earner employed now
+V237,Family savings during past year
+V238,Social class (subjective)
+V239,Scale of incomes
+V240,Sex
+V241,Year of birth
+V242,Age
+X003R2,Age recoded (3 intervals)
+X003R,Age recoded (6 intervals)
+V243,Mother immigrant
+V243_AU,Mother's Country of origin
+V244,Father immigrant
+V244_AU,Father's Country of origin
+V245,Respondent immigrant
+V246,Respondent citizen
+V247,Language at home
+V248,Highest educational level attained
+V248_CS,Education (country specific)
+V249,What age did you complete your education
+V250,Do you live with your parents
+V251,Respondent interested during the interview
+V252,Interview privacy
+V253,Size of town
+V253_CS,Size of town (country specific)
+V254,Ethnic group
+V255,Was the respondent literate
+N_REGION_ISO,Region (ISO)
+V256,Region where the interview was conducted
+V256B,Region (2) where the interview was conducted
+V256C,Region (level 3) where survey was conducted
+V257,Language in which interview was conducted
+V258,Weight
+V258A,Weight [with split ups]
+S018,Equilibrated weight-1000
+S019,Equilibrated weight-1500
+V260,Questionnaire version
+V261,Date interview
+V262,Year survey
+V265,Profession/job
+Y001,Post-Materialist index 12-item
+Y001_1,Materialist/postmaterialist 12-item index: Component 1
+Y001_2,Materialist/postmaterialist 12-item index: Component 2
+Y001_3,Materialist/postmaterialist 12-item index: Component 3
+Y001_4,Materialist/postmaterialist 12-item index: Component 4
+Y001_5,Materialist/postmaterialist 12-item index: Component 5
+Y002,Post-Materialist index 4-item
+Y003,Autonomy Index
+MN_35A,Approximately how many total hours a month were you active in voluntary organiza
+MN_163A,How likely it is that most people view those between the ages of 18 to 29 as fri
+MN_163B,How likely it is that most people view those between the ages of 18 to 29 as com
+MN_163C,How likely it is that most people view those between the ages of 18 to 29 with r
+MN_228L,"If you had your preference, in which of the following would you prefer to work"
+MN_228M,How widespread: Corruption is within businesses in your country
+MN_228N,How widespread: Corruption is within the government in your country
+MN_228O,Level of corruption in this country than it was five years ago
+MN_228P,Government of your country is doing enough to fight corruption
+MN_228Q,Faced with (last year): People give a bribe/present to solve their problems whic
+MN_228R,Opinion of those who start and run their own businesses
+MN_228S1,Degree of satisfaction (city/area where you live): The public transportation sys
+MN_228S2,Degree of satisfaction (city/area where you live): The roads and highways
+MN_228S3,Degree of satisfaction (city/area where you live): The schools
+MN_228S4,Degree of satisfaction (city/area where you live): The quality of air
+MN_228S5,Degree of satisfaction (city/area where you live): The quality of water
+MN_228S6,Degree of satisfaction (city/area where you live): The quality of health care
+MN_228S7,Degree of satisfaction (city/area where you live): The quality of housing
+MN_228S8,Degree of satisfaction (city/area where you live): The beauty or physical settin
+MN_229A,Have you actively looked for work in the past four weeks
+MN_229B,"Employment opportunity, would you be interested and able to start working"
+MN_230A,Are you registered through your employer with the Social Security in [country]
+MN_233A,Degree of satisfaction: Salary and benefits of your current primary job
+MN_233B,Degree of satisfaction: Opportunities for professional development/promotion in
+MN_234A,Have a business/have taken steps to start a business (by yourself/with others) d
+MN_237A,You/member of your family living with you (over last year) - borrow money
+MN_237B1,"If 'borrow money', from any of the following places: Microfinance Institution"
+MN_237B2,"If 'borrow money', from any of the following places: Commercial Bank"
+MN_237B3,"If 'borrow money', from any of the following places: Public Bank"
+MN_237B4,"If 'borrow money', from any of the following places: Friends or Family"
+MN_237B5,"If 'borrow money', from any of the following places: Informal Savings and Lendin"
+MN_237B6,"If 'borrow money', from any of the following places: Credit Supplier"
+MN_237B7,"If 'borrow money', from any of the following places: Other"
+MN_237C1,"If 'borrow money', the loan was used for: Starting or Growing a Business"
+MN_237C2,"If 'borrow money', the loan was used for: Buying or Improving a Home"
+MN_237C3,"If 'borrow money', the loan was used for: Getting Married"
+MN_237C4,"If 'borrow money', the loan was used for:  Household Purchases"
+MN_237C5,"If 'borrow money', the loan was used for:  Emergencies"
+MN_237C6,"If 'borrow money', the loan was used for: Others"
+MN_249A1,Formal education system [country] provides people with skills/ training: To find
+MN_249A2,Formal education system [country] provides people with skills/ training: To perf
+MN_249A3,Formal education system [country] provides people with skills/ training: To star
+sacsecval,SACSECVAL.- Welzel Overall Secular Values
+secvalwgt,Weight for overal secular values
+resemaval,RESEMAVAL.- Welzel emancipative values
+weightb,Weight for Emancipative values
+I_AUTHORITY,AUTHORITY - Welzel defiance - 1: Inverse respect for authority
+I_NATIONALISM,NATIONALISM - Welzel defiance - 2: Inverse national pride
+I_DEVOUT,DEVOUT- Welzel defiance - 3: Inverse devoutness
+defiance,DEFIANCE.- Welzel defiance sub-index
+WEIGHT1A,Overall Secular Values-1: Weight1a
+I_RELIGIMP,RELIGIMP - Welzel disbelief- 1: Inverse importance of religion
+I_RELIGBEL,RELIGBEL - Welzel disbelief- 2: Inverse religious person
+I_RELIGPRAC,RELIGPRAC - Welzel disbelief- 3: Inverse religious practice
+disbelief,DISBELIEF.- Welzel disbelief sub-index
+WEIGHT2A,Overall Secular Values-2: Weight2a
+I_NORM1,NORM1 - Welzel relativism- 1: Inverse norm conform1
+I_NORM2,NORM2 - Welzel relativism- 2: Inverse norm conform2
+I_NORM3,NORM3 - Welzel relativism- 3: Inverse norm conform3
+relativism,RELATIVISM.- Welzel relativism
+WEIGHT3A,Overall Secular Values-3: Weight
+I_TRUSTARMY,TRUSTARMY- Welzel scepticism- 1: Inverse trust in army
+I_TRUSTPOLICE,TRUSTPOLICE- Welzel scepticism- 2: Inverse trust in police
+I_TRUSTCOURTS,TRUSTCOURTS- Welzel scepticism- 3: Inverse trust in courts
+scepticism,SCEPTICISM.- Welzel scepticism index
+WEIGHT4A,Overall Secular Values-4: Weight 4a
+I_INDEP,INDEP- Welzel autonomy-1: Independence as kid quality
+I_IMAGIN,IMAGIN- Welzel autonomy-2: Imagination as kid quality
+I_NONOBED,Emancipative Values-1: Obedience not kid quality
+autonomy,AUTONOMY.- Wezel Autonomy subindex
+WEIGHT1B,Emancipative Values-1: Weight1b
+I_WOMJOB,WOMJOB- Welzel equality-1: Gender equality: job
+I_WOMPOL,WOMPOL- Welzel equality-2: Gender equality: politics
+I_WOMEDU,WOMEDU- Welzel equality-3: Gender equality: education
+equality,Emancipative Values-2: Equality sub-index
+WEIGHT2B,Emancipative Values-2: Weight2b
+I_HOMOLIB,HOMOLIB- Welzel choice-1: Homosexuality acceptance
+I_ABORTLIB,ABORTLIB- Welzel choice-2: Abortion acceptable
+I_DIVORLIB,DIVORLIB- Welzel choice-3: Divorce acceptable
+choice,CHOICE.- Welzel choice sub-index
+WEIGHT3B,Emancipative Values-3: Weight3b
+I_VOICE1,VOICE1- Welzel voice-1
+I_VOICE2,VOICE2- Welzel voice-2
+I_VOI2_00,VOI2_00- Welzel voice-3 (auxiliary)
+voice,VOICE.- Welzel voice sub-index
+WEIGHT4B,Emancipative Values-4: Weight 4b
